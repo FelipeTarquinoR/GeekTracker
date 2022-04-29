@@ -1,0 +1,15 @@
+<!DOCTYPE html><!-- This file has the common object that every single page is going to share across the while project -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeekTracker</title>
+</head>
+<body>
+    
+    {{> navbar}}<!-- This is how u can call the created partials -->
+
+    {{{body}}}<!-- This line gets replaced with the corresponding hbs(html file) we need -->
+</body>
+</html>
