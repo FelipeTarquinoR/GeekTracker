@@ -1,25 +1,4 @@
 <!-- This test page is gonna be replaced by the projects main page-->
-<form action="/tasks/add" method="POST">
-    <div>
-        <label for="title">Write a title</label>
-        <input type="text" name="title" placeholder="title" id="title">
-    </div>
-    <div>
-        <label for="descrption">Write a description</label>
-        <textarea name="description" placeholder="description" id="description"></textarea>
-    </div>
+{{> tasks/taskForm}}
 
-    <div>
-        <button>Add</button>
-    </div>
-</form>
-<ul>
-    {{#each tasks}}<!-- #each is like a handlebars for function. Using the array from index.routes -->
-        <li>
-            {{title}}
-            {{description}}
-            <button>Edit</button>
-            <button>Delete</button>
-        </li>
-    {{/each}}
-</ul>
+{{> tasks/taskTable}}

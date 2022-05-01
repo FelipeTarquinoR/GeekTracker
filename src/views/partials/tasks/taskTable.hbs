@@ -1,0 +1,25 @@
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each tasks}}<!-- #each is like a handlebars 'for' function. Using the array from index.routes -->
+        <tr>
+            <td>{{@index}}</td><!-- Index is a handlebars property that comes directly from the array that's being used -->
+            <td>{{title}}</td><!-- This is how u use the handlebars array -->
+            <td>{{description}}</td>
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+                <button>Update</button>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
