@@ -1,10 +1,10 @@
 //Model example class
 
 //Import block
-import {schema, model} from 'mongoose'
+import {Schema, model} from 'mongoose'
 
 //Schema creation example
-const taskSchema = new schema({
+const taskSchema = new Schema({
     title: {
       type: String,
       required: true,
@@ -17,7 +17,7 @@ const taskSchema = new schema({
     },
     done: {
         type: Boolean,
-        defalut: false//Done property already exists after creation but it is set to false by default
+        default: false//Done property already exists after creation but it is set to false by default
     },
 },{
     timestamps: true,//This line allows the storage of creation and update timestamps
