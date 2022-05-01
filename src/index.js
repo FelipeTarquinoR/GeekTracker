@@ -2,6 +2,7 @@
 
 //Import block
 import app from "./app"
+import './database'
 
 //App object listens to 3000 port
 app.listen(3000)
