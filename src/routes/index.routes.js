@@ -11,9 +11,10 @@ router.get("/", (req, res) => {
     res.render('index')
 })
 
-router.post("/tasks/add", (req, res) =>{//Added the first post method
+router.post("/tasks/add", async (req, res) =>{//Added the first post method
     const task = Task(req.body)
-    res.send('saved')
+    await task.save()//Mongo function to save objects
+    res.redirect('/')//This response redirects to the page I need
 })
 
 //About test page route created
