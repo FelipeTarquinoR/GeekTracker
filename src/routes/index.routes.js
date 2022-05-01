@@ -7,8 +7,9 @@ import Task from '../models/TaskTest'//Task Model Import
 const router = Router()
 
 //Main page route and content
-router.get("/", (req, res) => {
-    res.render('index')
+router.get("/", async (req, res) => {
+    const tasks = await Task.find().lean()//consulting model in the database and saving to a constant - Lean method transforms mongodb objects to javascript objects
+    res.render('index', {tasks: tasks})//Passing the array to the Index html file
 })
 
 router.post("/tasks/add", async (req, res) =>{//Added the first post method

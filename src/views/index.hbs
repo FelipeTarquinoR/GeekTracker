@@ -13,3 +13,13 @@
         <button>Add</button>
     </div>
 </form>
+<ul>
+    {{#each tasks}}<!-- #each is like a handlebars for function. Using the array from index.routes -->
+        <li>
+            {{title}}
+            {{description}}
+            <button>Edit</button>
+            <button>Delete</button>
+        </li>
+    {{/each}}
+</ul>
