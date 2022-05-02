@@ -15,12 +15,12 @@
             <td>{{description}}</td>
             <td>
                 {{#if done}}<!-- this is how a conditional is made using express -->
-                    <a href="/toggleDone/{{_id}}">Undone</a>
+                    <a href="/tasks/{{_id}}/toggleDone">Undone</a>
                 {{else}}
-                    <a href="/toggleDone/{{_id}}">Done</a>
+                    <a href="/tasks/{{_id}}/toggleDone">Done</a>
                 {{/if}}
-                <a href="/delete/{{_id}}">Delete</a>
-                <a href="/edit/{{_id}}">Update</a>
+                <a href="/tasks/{{_id}}/delete">Delete</a>
+                <a href="/tasks/{{_id}}/edit">Update</a>
             </td>
         </tr>
         {{/each}}

@@ -1,4 +1,4 @@
-<form action="/edit/{{task._id}}" method="POST">
+<form action="/tasks/{{task._id}}/edit" method="POST">
     <input type="text" name="title" placeholder="Title" value="{{task.title}}"/><!-- this is how u use the task object from the index.routes get method -->
     <textarea name="description" rows="3" placeholder="Add a description" >{{task.description}}</textarea><!-- To add the task.description to a textarea u 
     have to use it as another element of the text area -->

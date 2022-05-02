@@ -2,63 +2,21 @@
 
 //Import block
 import {Router} from 'express'//router creation function import from express
-import Task from '../models/TaskTest'//Task Model Import
+import {renderHome, addTask, renderEdit, editTask, deleteTask, toggleDone} from '../controllers/tasks.controller'//Importing the controller methods
 
-const router = Router()
+const router = Router()//Router object creation
 
-//Main page route and content
-router.get("/", async (req, res) => {
-    const tasks = await Task.find().lean()//consulting model in the database and saving to a constant - Lean method transforms mongodb objects to javascript objects
-    res.render('index', {tasks: tasks})//Passing the array to the Index html file
-})
+router.get("/", renderHome)//Home rendering route
 
-router.post("/tasks/add", async (req, res) =>{//Added the adding tasks post method
-    try {
-        const task = Task(req.body)
-        await task.save()//Mongo function to save objects
-        res.redirect('/')//This response redirects to the page I need
-    } catch (error) {
-        console.log(error)
-    }
-})
+router.post("/tasks/add", addTask)//Add task route
 
-//About test page route created
-router.get("/about", (req, res) => {
-    res.render('about')
-})
+router.get("/tasks/:id/edit", renderEdit)//Edit rendering route
 
-//Edit test page route created
-router.get("/edit/:id", async (req, res) => {
-    try {
-        const task = await Task.findById(req.params.id).lean()//Id has to be the same thing that was put after the ":" in the route
-        res.render('edit', {task: task})//Passing the object to index html file
-    } catch (error) {
-        console.log(error.message)
-    }
-})
+router.post('/tasks/:id/edit', editTask)//Edit task route
 
-router.post('/edit/:id', async (req, res) => {//Editing tasks post method, as this function uses the same route as the get one, the method is specified in the html
-    const {id} = req.params//Take the Id that comes from the post method
-    await Task.findByIdAndUpdate(id, req.body)
-    console.log(req.body)
-    res.redirect('/')
-})
+router.get("/tasks/:id/delete", deleteTask)//Delete task route
 
-//Delete test page and method created
-router.get("/delete/:id", async (req, res) => {
-    const {id} = req.params
-    await Task.findByIdAndDelete(id)
-    res.redirect("/")
-})
-
-//Mark as done test page and method created
-router.get("/toggleDone/:id", async (req, res) => {
-    const {id} = req.params//Takes the id
-    const task = await Task.findById(id)//Find the task with the id
-    task.done = !task.done//Invert the done property value
-    await task.save()//Save the task
-    res.redirect("/")
-})
+router.get("/tasks/:id/toggleDone", toggleDone)//Toggle task Done route
 
 //Export block
 export default router
