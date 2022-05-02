@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     res.render('index', {tasks: tasks})//Passing the array to the Index html file
 })
 
-router.post("/tasks/add", async (req, res) =>{//Added the first post method
+router.post("/tasks/add", async (req, res) =>{//Added the adding tasks post method
     try {
         const task = Task(req.body)
         await task.save()//Mongo function to save objects
@@ -20,7 +20,6 @@ router.post("/tasks/add", async (req, res) =>{//Added the first post method
     } catch (error) {
         console.log(error)
     }
-    
 })
 
 //About test page route created
@@ -29,8 +28,20 @@ router.get("/about", (req, res) => {
 })
 
 //Edit test page route created
-router.get("/edit", (req, res) => {
-    res.render('edit')
+router.get("/edit/:id", async (req, res) => {
+    try {
+        const task = await Task.findById(req.params.id).lean()//Id has to be the same thing that was put after the ":" in the route
+        res.render('edit', {task: task})//Passing the object to index html file
+    } catch (error) {
+        console.log(error.message)
+    }
+})
+
+router.post('/edit/:id', async (req, res) => {//Editing tasks post method, as this function uses the same route as the get one, the method is specified in the html
+    const {id} = req.params//Take the Id that comes from the post method
+    await Task.findByIdAndUpdate(id, req.body)
+    console.log(req.body)
+    res.redirect('/')
 })
 
 //Export block
