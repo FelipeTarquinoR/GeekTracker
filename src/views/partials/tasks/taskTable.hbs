@@ -14,7 +14,11 @@
             <td>{{title}}</td><!-- This is how u use the handlebars array -->
             <td>{{description}}</td>
             <td>
-                <button>Edit</button>
+                {{#if done}}<!-- this is how a conditional is made using express -->
+                    <a href="/toggleDone/{{_id}}">Undone</a>
+                {{else}}
+                    <a href="/toggleDone/{{_id}}">Done</a>
+                {{/if}}
                 <a href="/delete/{{_id}}">Delete</a>
                 <a href="/edit/{{_id}}">Update</a>
             </td>

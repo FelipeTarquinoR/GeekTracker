@@ -51,5 +51,14 @@ router.get("/delete/:id", async (req, res) => {
     res.redirect("/")
 })
 
+//Mark as done test page and method created
+router.get("/toggleDone/:id", async (req, res) => {
+    const {id} = req.params//Takes the id
+    const task = await Task.findById(id)//Find the task with the id
+    task.done = !task.done//Invert the done property value
+    await task.save()//Save the task
+    res.redirect("/")
+})
+
 //Export block
 export default router
