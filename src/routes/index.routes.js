@@ -44,5 +44,12 @@ router.post('/edit/:id', async (req, res) => {//Editing tasks post method, as th
     res.redirect('/')
 })
 
+//Delete test page and method created
+router.get("/delete/:id", async (req, res) => {
+    const {id} = req.params
+    await Task.findByIdAndDelete(id)
+    res.redirect("/")
+})
+
 //Export block
 export default router
